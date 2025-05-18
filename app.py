@@ -6,10 +6,10 @@ from PIL import Image
 import os
 
 # Load and display PDLI banner group photo
-img_path = os.path.join("assets", "PDLI.png")
+img_path = os.path.join("assets", "PDLI.jpg")
 if os.path.exists(img_path):
     img = Image.open(img_path)
-    st.image(img, caption="PDLI Banner", use_column_width=True)
+    st.image(img, caption="A PDLI Project, by Joseph Elsayyid", use_container_width=True)
 
 st.title("📰 AI-Powered Israel-Palestine Bias Detector")
 
