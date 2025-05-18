@@ -6,7 +6,7 @@ from PIL import Image
 import os
 
 # Load and display PDLI banner group photo
-img_path = os.path.join("assets", "pdli_banner.png")
+img_path = os.path.join("assets", "PDLI.png")
 if os.path.exists(img_path):
     img = Image.open(img_path)
     st.image(img, caption="PDLI Banner", use_column_width=True)
