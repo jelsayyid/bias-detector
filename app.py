@@ -21,15 +21,16 @@ if st.button("Analyze"):
         # --- NEW: highlight charged terms ---
         highlighted = article
         for term in CHARGED_TERMS:
-            # case-insensitive replace
+            # wrap each occurrence in a yellow span
             highlighted = re.sub(
                 rf"\b({re.escape(term)})\b",
-                r"**<mark>\1</mark>**",
+                r'<span style="background-color: yellow; font-weight:bold;">\1</span>',
                 highlighted,
                 flags=re.IGNORECASE
             )
+
         st.markdown("**Highlighted biased terms:**")
-        st.markdown(highlighted)  # render the article with highlights
+        st.markdown(highlighted, unsafe_allow_html=True)
         # --- end highlight block ---
         st.markdown(f"**Top prediction:** {result['labels'][0]}")
         st.markdown("**Scores:**")
