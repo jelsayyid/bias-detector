@@ -1,12 +1,24 @@
 from transformers import pipeline
 
-classifier = pipeline(
-    "zero-shot-classification",
-    model="facebook/bart-large-mnli"
-)
+
+_classifier = None
+
+
+def _get_classifier():
+    """Lazily create and return the zero-shot classification pipeline."""
+    global _classifier
+    if _classifier is None:
+        _classifier = pipeline(
+            "zero-shot-classification",
+            model="facebook/bart-large-mnli",
+        )
+    return _classifier
+
 
 def detect_bias(text: str):
+    """Classify the given text into bias categories."""
     labels = ["neutral", "slightly biased", "strongly biased"]
+    classifier = _get_classifier()
     return classifier(text, labels)
 
 
